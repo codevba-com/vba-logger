@@ -60,7 +60,7 @@ MyLogger.Log _
     Level:=eLogLevelInfo, _
     Source:="LogTests.TestLoggerFile"
 ```
-
+```text
 2026-03-16 12:46:52 [INFO]  LogTests.TestLoggerFile – Test Logger File Start
 2026-03-16 12:46:52 [DEBUG] LogTests.TestLoggerFile – Running step 1
 2026-03-16 12:46:53 [WARN]  LogTests.TestLoggerFile – Unexpected value, using default
