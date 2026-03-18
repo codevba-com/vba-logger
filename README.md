@@ -1,38 +1,76 @@
-# vba-logger - a versatile Logging class with multiple sinks and formatters.
+# vba-logger  
+A versatile logging class for VBA with multiple sinks and formatters.
 
-##Logger class
+## 🔧 Logger Class
 
-With the Logger class you can store the following data (using Type LogRecord)
-Timestamp    system date (automatic)
-Level        enumerated values allowing sort based on severity
-LevelName    readable, e.g. INFO or ERROR
-Message      details of the event
-Source       event source
-UserName     Environ$("USERNAME")
-MachineName  Environ$("COMPUTERNAME")
+The `Logger` class stores structured log data using the `LogRecord` type:
 
-The Logger class supports three sinks:
-1. File: specify FilePath - or keep default: DocumentFolder (application document + log.txt) 
-2. MS Access table: set LogTableName or keep default name tblLog
-3. Immediate Window
-You can specify your log data destination (sink) setting property SinkType 
-If you need multiple sinks, use multiple instances of the Logger class
+| Field         | Description |
+|---------------|-------------|
+| **Timestamp** | System date/time (automatic) |
+| **Level**     | Enumerated severity level |
+| **LevelName** | Readable label (e.g., `INFO`, `ERROR`) |
+| **Message**   | Event details |
+| **Source**    | Event source identifier |
+| **UserName**  | `Environ$("USERNAME")` |
+| **MachineName** | `Environ$("COMPUTERNAME")` |
 
-For File and Immediate Window you use prefab log record formatters:
-1. Compact - default for Immediate Window
-2. Simple - default for File
-3. Json
-You can alter the formatter used by setting property LogRecordFormat.
+### Supported Sinks
+You can route log output to any of these destinations:
 
-At the top of the Logger class you can find 6 constants that determine the default behaviour. 
+1. **File**  
+   - Set `FilePath` or use default: *DocumentsFolder/log.txt*
+2. **MS Access Table**  
+   - Set `LogTableName` or use default: *tblLog*
+3. **Immediate Window**
 
-##Loggers module
+Use the `SinkType` property to select the destination.  
+For multiple sinks, simply create multiple `Logger` instances.
 
-The Loggers module contains three prefab Logger procedures: LoggerFile, LoggerAccessTable and LoggerImmediateWindow.
-The fourth, MyLogger, let's you define one with SinkType and LogRecordFormat to tailor to your needs.
-Inside the MyLogger procedure you find a small explanation on the use of static variable to have the Logger class only instantiate once. 
+### Record Formatters
+Available formatters:
+
+- **Compact** — default for Immediate Window  
+- **Simple** — default for File  
+- **Json**
+
+Select a formatter using the `LogRecordFormat` property.
+
+At the top of the class module you’ll find six constants that define default behavior.
+
+---
+
+## Loggers Module
+
+The `Loggers` module provides three ready‑to‑use logger functions:
+
+- `LoggerFile`
+- `LoggerAccessTable`
+- `LoggerImmediateWindow`
+
+And a customizable one:
+
+- `MyLogger` — lets you define both `SinkType` and `LogRecordFormat`.
+
+### Example Usage
+
+```vba
+MyLogger.Log _
+    Message:="Test Logger File Start", _
+    Level:=eLogLevelInfo, _
+    Source:="LogTests.TestLoggerFile"
+```
+
+2026-03-16 12:46:52 [INFO]  LogTests.TestLoggerFile – Test Logger File Start
+2026-03-16 12:46:52 [DEBUG] LogTests.TestLoggerFile – Running step 1
+2026-03-16 12:46:53 [WARN]  LogTests.TestLoggerFile – Unexpected value, using default
+2026-03-16 12:46:54 [ERROR] LogTests.TestLoggerFile – Failed to open file
+2026-03-16 12:46:55 [INFO]  LogTests.TestLoggerFile – Test Logger File End
 
 
-The Loggers module also contains a small DEMO & TESTS section. Here you can eaily verify if it will work for you.
+### Notes
+Inside `MyLogger` you’ll find an explanation of how a `Static` variable ensures the logger is instantiated only once.
+
+The module also includes a **DEMO & TESTS** section so you can quickly verify functionality.
 
 
