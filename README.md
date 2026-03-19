@@ -63,7 +63,7 @@ MyLogger.Log _
 ```text
 2026-03-16 12:46:52 [INFO]  LogTests.TestLoggerFile – Test Logger File Start
 2026-03-16 12:46:52 [DEBUG] LogTests.TestLoggerFile – Running step 1
-2026-03-16 12:46:53 [WARN]  LogTests.TestLoggerFile – Unexpected value, using default
+2026-03-16 12:46:53 [WARNING]  LogTests.TestLoggerFile – Unexpected value, using default
 2026-03-16 12:46:54 [ERROR] LogTests.TestLoggerFile – Failed to open file
 2026-03-16 12:46:55 [INFO]  LogTests.TestLoggerFile – Test Logger File End
 
