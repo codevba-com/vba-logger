@@ -1,7 +1,7 @@
 # vba-logger  
 A versatile logging class for VBA with multiple sinks and formatters.
 
-## 🔧 Logger Class
+## Logger Class
 
 The `Logger` class stores structured log data using the `LogRecord` type:
 
